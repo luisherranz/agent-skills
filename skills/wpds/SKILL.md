@@ -39,7 +39,7 @@ Before working on any WPDS-related tasks, make sure you read relevant documentat
 
 ### Boundaries
 
-- Don't spend too much time on non-UI related aspects of an answer (for example, fetching data from stores).
+- Don't spend too much time on non-UI related aspects of an answer (for example, fetching data from stores, or localizing strings of text).
 - Focus on building UI that adheres as much as possible to the WPDS best practices, uses the most fitting WPDS components/tokens/patterns.
 
 ### Tech stack
@@ -49,3 +49,9 @@ Before working on any WPDS-related tasks, make sure you read relevant documentat
 ### Validation
 
 - If the local context in which a task is running provide lint scripts, use them to validate the proposed code output when possible.
+
+## Output
+
+- Provide a clear and concise explanation of what the solution does, and add context to why each decision was made.
+- Be explicit about the boundaries, ie. what was explicitly left out of the task because not relevant (eg non-ui related).
+- Provide working code snippets
