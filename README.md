@@ -31,6 +31,7 @@ Agent Skills solve this by giving AI assistants **expert-level WordPress knowled
 | **wp-performance** | Profiling, caching, database optimization, Server-Timing |
 | **wp-phpstan** | PHPStan static analysis for WordPress projects (config, baselines, WP-specific typing) |
 | **wp-playground** | WordPress Playground for instant local environments |
+| **wpds** | WordPress Design System |
 
 ## Quick Start
 
