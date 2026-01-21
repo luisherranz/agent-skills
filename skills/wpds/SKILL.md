@@ -46,11 +46,6 @@ Before working on any WPDS-related tasks, make sure you read the  documentation 
 
 - Unless you are told otherwise (or gathered specific information from the local context of the request), assume the following tech stack: TypeScript, React, CSS.
 
-### Boundaries
-
-- Don't spend too much time on non-UI related aspects of an answer (for example, fetching data from stores).
-- Focus on building UI that adheres as much as possible to the WPDS best practices, uses the most fitting WPDS components/tokens/patterns.
-
 ### Validation
 
 - If the local context in which a task is running provide lint scripts, use them to validate the proposed code output when possible.
