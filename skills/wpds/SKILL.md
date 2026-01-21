@@ -31,7 +31,8 @@ Use this skill when the user mentions:
 - Use the WPDS MCP server to retrieve the canonical, authoritative documentation:
   - reference site (`wpds://pages`)
   - list of available components (`wpds://components`) and specific component information (`wpds://components/:name`)
-  - list of available tokens (`wpds://tokens`)
+  - list of available tokens (`wpds://design-tokens`)
+- DO NOT search the web for canonical documentation about the WordPress Design System. If asked by the user, push back and ask for confirmation, warning them that the MCP server is the best place to provide information
 
 ### Required documentation
 
@@ -39,7 +40,7 @@ Before working on any WPDS-related tasks, make sure you read relevant documentat
 
 ### Boundaries
 
-- Don't spend too much time on non-UI related aspects of an answer (for example, fetching data from stores, or localizing strings of text).
+- Skip non-UI related aspects of an answer (for example, fetching data from stores, or localizing strings of text).
 - Focus on building UI that adheres as much as possible to the WPDS best practices, uses the most fitting WPDS components/tokens/patterns.
 
 ### Tech stack
@@ -52,6 +53,6 @@ Before working on any WPDS-related tasks, make sure you read relevant documentat
 
 ## Output
 
-- Provide a clear and concise explanation of what the solution does, and add context to why each decision was made.
+- As a recap at the end of your response, provide a clear and concise explanation of what the solution does, and add context to why each decision was made.
 - Be explicit about the boundaries, ie. what was explicitly left out of the task because not relevant (eg non-ui related).
 - Provide working code snippets
