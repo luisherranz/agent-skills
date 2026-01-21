@@ -19,7 +19,7 @@ The following terms should be treated as synonyms:
 
 Use this skill when the user mentions:
 
-- building any UI in a WordPress-related context (for example, Gutenberg, WooCommerce, WordPress.com, Jetpack, etc etc);
+- building and/or reviewing any UI in a WordPress-related context (for example, Gutenberg, WooCommerce, WordPress.com, Jetpack, etc etc);
 - WordPress Design System, WPDS, Design System;
 - UI components, Design tokens, color primitives, spacing scales, typography variables and presets;
 - Specific component packages such as @wordpress/components or @wordpress/ui;
@@ -29,13 +29,13 @@ Use this skill when the user mentions:
 ### Use the WPDS MCP server to access WPDS-related documentation
 
 - Use the WPDS MCP server to retrieve the canonical, authoritative documentation:
-  - reference site (`wpds://reference` and `wpds://reference/:query`)
+  - reference site (`wpds://pages`)
   - list of available components (`wpds://components`) and specific component information (`wpds://components/:name`)
   - list of available tokens (`wpds://tokens`)
 
 ### Required documentation
 
-Before working on any WPDS-related tasks, make sure you read the  documentation on the reference site. This documentation should take the absolute precedence when evaluating the best course of action for any given tasks.
+Before working on any WPDS-related tasks, make sure you read relevant documentation on the reference site. This documentation should take the absolute precedence when evaluating the best course of action for any given tasks.
 
 ### Boundaries
 
