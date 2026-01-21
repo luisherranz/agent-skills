@@ -1,7 +1,7 @@
 ---
 name: wpds
 description: "Use when building UIs leveraging the WordPress Design System (WPDS) and its components, tokens, patterns, etc."
-# compatibility: "Requires WPDS MCP server configured and running."
+compatibility: "Requires WPDS MCP server configured and running."
 ---
 
 # WordPress Design System (WPDS)
