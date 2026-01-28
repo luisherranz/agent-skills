@@ -7,6 +7,7 @@ This repo currently includes:
 - `wp-block-development`
 - `wp-block-themes`
 - `wp-plugin-development`
+- `wp-rest-api`
 - `wp-interactivity-api`
 - `wp-abilities-api`
 - `wp-wpcli-and-ops`
@@ -15,7 +16,6 @@ This repo currently includes:
 
 Planned next skills (not yet implemented):
 
-- `wp-rest-api`
 - `wp-build-tooling`
 - `wp-testing`
 - `wp-security`
