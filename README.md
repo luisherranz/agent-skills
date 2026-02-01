@@ -4,8 +4,6 @@
 
 Agent Skills are portable bundles of instructions, checklists, and scripts that help AI assistants (Claude, Copilot, Codex, Cursor, etc.) understand WordPress development patterns, avoid common mistakes, and follow best practices.
 
-<img width="2400" height="1260" alt="Agent Skills banner" src="https://github.com/user-attachments/assets/def9a6f9-cbba-4249-866f-b9a274b84188" />
-
 ## Why Agent Skills?
 
 AI coding assistants are powerful, but they often:
