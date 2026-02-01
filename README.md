@@ -1,5 +1,10 @@
 # Agent Skills for WordPress
 
+> **⚠️ This repository has moved to [WordPress/agent-skills](https://github.com/WordPress/agent-skills)**
+>
+> This repository is now archived. All future development happens in the WordPress organization.
+> Please update your bookmarks, clones, and references to use the new repository.
+
 **Teach AI coding assistants how to build WordPress the right way.**
 
 Agent Skills are portable bundles of instructions, checklists, and scripts that help AI assistants (Claude, Copilot, Codex, Cursor, etc.) understand WordPress development patterns, avoid common mistakes, and follow best practices.
@@ -40,7 +45,7 @@ Agent Skills solve this by giving AI assistants **expert-level WordPress knowled
 
 ```bash
 # Clone agent-skills
-git clone https://github.com/Automattic/agent-skills.git
+git clone https://github.com/WordPress/agent-skills.git
 cd agent-skills
 
 # Build the distribution
