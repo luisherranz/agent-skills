@@ -20,7 +20,7 @@ This document describes how AI tools were used to create the skills in this repo
 
 3. **Contributor Review**: WordPress contributors reviewed each skill for accuracy, alignment with current best practices, and completeness.
 
-4. **AI-Assisted Testing**: Skills were tested by using them with AI coding assistants (Codex and Claude Code) on real WordPress development tasks, sourced from [WP Bench](https://make.wordpress.org/ai/2026/01/14/introducing-wp-bench-a-wordpress-ai-benchmark/) to verify they produce correct guidance. That said, skills have not (yet) been run across a formal evaluation system, as one does not exist. 
+4. **AI-Assisted Testing**: Skills were tested by using them with AI coding assistants (Codex and Claude Code) on real WordPress development tasks, sourced from [WP Bench](https://make.wordpress.org/ai/2026/01/14/introducing-wp-bench-a-wordpress-ai-benchmark/) to verify they produce correct guidance. That said, skills have not (yet) been run across a formal evaluation system, *as one does not exist*.
 
 5. **Iteration**: Based on testing results, skills were refined before the v1 release.
 
@@ -28,21 +28,21 @@ This document describes how AI tools were used to create the skills in this repo
 
 All v1 skills followed the same process described above. As skills diverge in their development history, this table will be updated.
 
-| Skill | AI Generated | Human Reviewed | Tested | Notes |
-|-------|--------------|----------------|--------|-------|
-| wordpress-router | Yes | Yes | Yes | Routes to appropriate workflows |
-| wp-project-triage | Yes | Yes | Yes | Includes detection scripts |
-| wp-block-development | Yes | Yes | Yes | Core Gutenberg block patterns |
-| wp-block-themes | Yes | Yes | Yes | theme.json, templates, patterns |
-| wp-plugin-development | Yes | Yes | Yes | Hooks, settings API, security |
-| wp-rest-api | Yes | Yes | Yes | REST endpoints and auth |
-| wp-interactivity-api | Yes | Yes | Yes | data-wp-* directives |
-| wp-abilities-api | Yes | Yes | Yes | Capability-based permissions |
-| wp-wpcli-and-ops | Yes | Yes | Yes | CLI commands and automation |
-| wp-performance | Yes | Yes | Yes | Profiling, caching, optimization |
-| wp-phpstan | Yes | Yes | Yes | Static analysis configuration |
-| wp-playground | Yes | Yes | Yes | Local dev environments |
-| wpds | Yes | Yes | Yes | WordPress Design System |
+| Skill | AI Generated | Human Reviewed | Tested |
+|-------|--------------|----------------|--------|
+| [wordpress-router](../skills/wordpress-router/SKILL.md) | Yes | Yes | Yes |
+| [wp-project-triage](../skills/wp-project-triage/SKILL.md) | Yes | Yes | Yes |
+| [wp-block-development](../skills/wp-block-development/SKILL.md) | Yes | Yes | Yes |
+| [wp-block-themes](../skills/wp-block-themes/SKILL.md) | Yes | Yes | Yes |
+| [wp-plugin-development](../skills/wp-plugin-development/SKILL.md) | Yes | Yes | Yes |
+| [wp-rest-api](../skills/wp-rest-api/SKILL.md) | Yes | Yes | Yes |
+| [wp-interactivity-api](../skills/wp-interactivity-api/SKILL.md) | Yes | Yes | Yes |
+| [wp-abilities-api](../skills/wp-abilities-api/SKILL.md) | Yes | Yes | Yes |
+| [wp-wpcli-and-ops](../skills/wp-wpcli-and-ops/SKILL.md) | Yes | Yes | Yes |
+| [wp-performance](../skills/wp-performance/SKILL.md) | Yes | Yes | Yes |
+| [wp-phpstan](../skills/wp-phpstan/SKILL.md) | Yes | Yes | Yes |
+| [wp-playground](../skills/wp-playground/SKILL.md) | Yes | Yes | Yes |
+| [wpds](../skills/wpds/SKILL.md) | Yes | Yes | Yes |
 
 ## Quality Commitment
 
