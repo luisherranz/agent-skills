@@ -1,7 +1,7 @@
 ---
 name: blueprint
 description: Use when creating, editing, or reviewing WordPress Playground blueprint JSON files. Triggers on mentions of blueprints, playground configuration, or requests to set up a WordPress demo environment.
-compatibility: "Targets WordPress 6.9+ (PHP 7.2.24+). Playground CLI requires Node.js 20.18+; runs WP in WebAssembly with SQLite."
+compatibility: "Optionally Playground CLI or a browser"
 ---
 
 # WordPress Playground Blueprints
@@ -22,8 +22,6 @@ A Blueprint is a JSON file that declaratively configures a WordPress Playground 
   "steps": [{ "step": "login" }]
 }
 ```
-
-**Always include:** `$schema` (enables validation/autocomplete) and `preferredVersions` (explicit is better than implicit).
 
 ## Top-Level Properties
 
