@@ -262,3 +262,32 @@ The step name is `wp-cli` (with hyphen), NOT `cli` or `wpcli`.
 | Invented top-level keys | Schema is `additionalProperties: false` — only documented keys work |
 | Inventing proxy URLs for GitHub | Use `git:directory` resource type |
 | Omitting `refType` with branch/tag `ref` | Required — only `"HEAD"` works without it |
+
+## Testing Blueprints
+
+After creating or modifying a blueprint, test it. Two approaches are available depending on available tools.
+
+### Option A: Browser Testing with Playground MCP
+
+Use the Playground website at `https://playground.wordpress.net` combined with the **Playground MCP** and a browser MCP (Playwright or DevTools) to verify blueprints visually.
+
+1. **Load the blueprint** — Pass the blueprint as a URL-encoded JSON in the hash fragment:
+   ```
+   https://playground.wordpress.net/#{"steps":[{"step":"login"}]}
+   ```
+2. **Use the Playground MCP** to interact with the running WordPress instance — execute PHP, read files, make HTTP requests, and navigate pages.
+3. **Use a browser MCP** (Playwright or DevTools) to visually inspect the result — check sidebar menus, plugin lists, settings pages, or page content rendered by the blueprint.
+
+### Option B: Local CLI Testing
+
+Use the `wordpress-playground-server` skill to start a local Playground instance with the blueprint:
+
+1. Start a server with `--blueprint /path/to/blueprint.json`
+2. Use Playwright MCP to navigate and verify the expected state
+3. Stop the server when done
+
+For headless/CI validation without a UI:
+```bash
+npx @wp-playground/cli run-blueprint --blueprint=/path/to/blueprint.json
+```
+
