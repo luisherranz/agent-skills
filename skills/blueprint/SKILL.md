@@ -1,7 +1,7 @@
 ---
 name: blueprint
 description: Use when creating, editing, or reviewing WordPress Playground blueprint JSON files. Triggers on mentions of blueprints, playground configuration, or requests to set up a WordPress demo environment.
-compatibility: "Optionally Playground CLI or a browser"
+compatibility: "WordPress 6.9+, PHP 7.2.24+. Optionally Playground CLI or a browser"
 ---
 
 # WordPress Playground Blueprints
@@ -62,6 +62,7 @@ Resources tell Playground where to find files. Used by `installPlugin`, `install
 | `git:directory` | `url`, `ref` | See below |
 | `literal` | `name`, `contents` | `{ "resource": "literal", "name": "file.txt", "contents": "hello" }` |
 | `literal:directory` | `name`, `files` | See below |
+| `bundled` | `path` | References a file within a blueprint bundle (e.g. `{ "resource": "bundled", "path": "/plugin.zip" }`) |
 | `zip` | `inner` | Wraps another resource in a ZIP — use when a step expects a zip but your source isn't one (e.g. wrapping a `url` resource pointing to a raw directory) |
 
 ### git:directory — Installing from GitHub
@@ -292,21 +293,125 @@ This skill covers the most common steps and patterns. For the complete API, see:
 
 Additional steps not covered above: `runPHPWithOptions` (run PHP with custom `ini` settings), `runWpInstallationWizard`, and resource types `vfs` and `bundled` (for advanced embedding scenarios).
 
+## Blueprint Bundles
+
+Bundles are self-contained packages that include a `blueprint.json` along with all the resources it references (plugins, themes, WXR files, etc.). Instead of hosting assets externally, bundle them alongside the blueprint.
+
+### Bundle Structure
+
+```
+my-bundle/
+├── blueprint.json          ← must be at the root
+├── my-plugin.zip           ← zipped plugin directory
+├── theme.zip
+└── content/
+    └── sample-content.wxr
+```
+
+Plugins and themes must be zipped before bundling — `installPlugin` expects a zip, not a raw directory. To create the zip from a plugin directory:
+
+```bash
+cd my-bundle
+zip -r my-plugin.zip my-plugin/
+```
+
+### Referencing Bundled Resources
+
+Use the `bundled` resource type to reference files within the bundle:
+
+```json
+{
+  "step": "installPlugin",
+  "pluginData": {
+    "resource": "bundled",
+    "path": "/my-plugin.zip"
+  },
+  "options": { "activate": true }
+}
+```
+
+```json
+{
+  "step": "importWxr",
+  "file": {
+    "resource": "bundled",
+    "path": "/content/sample-content.wxr"
+  }
+}
+```
+
+### Creating a Bundle Step by Step
+
+1. Create the bundle directory and add `blueprint.json` at its root.
+2. Write your plugin/theme source files in a subdirectory (e.g. `my-plugin/my-plugin.php`).
+3. Zip the plugin directory: `zip -r my-plugin.zip my-plugin/`
+4. Reference it in `blueprint.json` using `{ "resource": "bundled", "path": "/my-plugin.zip" }`.
+
+Full example — a bundle that installs a custom plugin:
+
+```
+dashboard-widget-bundle/
+├── blueprint.json
+├── dashboard-widget.zip        ← zip of dashboard-widget/
+└── dashboard-widget/           ← plugin source (kept for editing)
+    └── dashboard-widget.php
+```
+
+```json
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "landingPage": "/wp-admin/",
+  "preferredVersions": { "php": "8.3", "wp": "latest" },
+  "steps": [
+    { "step": "login" },
+    {
+      "step": "installPlugin",
+      "pluginData": { "resource": "bundled", "path": "/dashboard-widget.zip" },
+      "options": { "activate": true }
+    }
+  ]
+}
+```
+
+### Distribution Formats
+
+| Format | How to use |
+|--------|-----------|
+| ZIP file (remote) | Website: `https://playground.wordpress.net/?blueprint-url=https://example.com/bundle.zip` |
+| ZIP file (local) | CLI: `npx @wp-playground/cli server --blueprint=./bundle.zip` |
+| Local directory | CLI: `npx @wp-playground/cli server --blueprint=./my-bundle/ --blueprint-may-read-adjacent-files` |
+| Git repository directory | Point `blueprint-url` at a repo directory containing `blueprint.json` |
+
+**GOTCHA:** Local directory bundles always need `--blueprint-may-read-adjacent-files` for the CLI to read bundled resources. Without it, any `"resource": "bundled"` reference will fail with a "File not found" error. ZIP bundles don't need this flag — all files are self-contained inside the archive.
+
 ## Testing Blueprints
 
-After creating or modifying a blueprint, test it. Minify the blueprint JSON (no extra whitespace), prepend `https://playground.wordpress.net/#`, and open the URL in a browser to verify.
+### Inline Blueprints (quick test, no bundles)
+
+Minify the blueprint JSON (no extra whitespace), prepend `https://playground.wordpress.net/#`, and open the URL in a browser:
 
 ```
 https://playground.wordpress.net/#{"$schema":"https://playground.wordpress.net/blueprint-schema.json","preferredVersions":{"php":"8.3","wp":"latest"},"steps":[{"step":"login"}]}
 ```
 
-Very large blueprints may exceed browser URL length limits; use the local CLI instead.
+Very large blueprints may exceed browser URL length limits; use the CLI instead.
 
 ### Local CLI Testing
 
-Use the `wordpress-playground-server` skill to start a local Playground instance with `--blueprint /path/to/blueprint.json`, then verify the expected state with Playwright MCP.
-
-For headless/CI validation without a UI:
+**Interactive server** (keeps running, opens in browser):
 ```bash
-npx @wp-playground/cli run-blueprint --blueprint=/path/to/blueprint.json
+# Directory bundle — requires --blueprint-may-read-adjacent-files
+npx @wp-playground/cli server --blueprint=./my-bundle/ --blueprint-may-read-adjacent-files
+
+# ZIP bundle — self-contained, no extra flags needed
+npx @wp-playground/cli server --blueprint=./bundle.zip
 ```
+
+**Headless validation** (runs blueprint and exits):
+```bash
+npx @wp-playground/cli run-blueprint --blueprint=./my-bundle/ --blueprint-may-read-adjacent-files
+```
+
+### Testing with the wordpress-playground-server Skill
+
+Use the `wordpress-playground-server` skill to start a local Playground instance with `--blueprint /path/to/blueprint.json`, then verify the expected state with Playwright MCP. For directory bundles, pass `--blueprint-may-read-adjacent-files` as an extra argument.
